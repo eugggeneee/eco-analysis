@@ -63,7 +63,7 @@
     tb.addEventListener('click', function () {
       var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', t); try { localStorage.setItem('eco-theme', t); } catch (e) {} label();
-      $('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#0C1710' : '#F3F7F1');
+      $('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#14301F' : '#F2F1E4');
     });
     function close() { nav.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', 'Open menu'); }
     burger.addEventListener('click', function () {
