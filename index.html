@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>EcoAnalysis | Read environmental quality from a leaf</title>
 <meta name="description" content="Upload a leaf photo and measure two stress signs in your browser: leaf asymmetry and a chlorophyll colour index. Includes an illustrative demo map.">
-<meta name="theme-color" content="#F3F7F1">
+<meta name="theme-color" content="#14301F">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Manrope:wght@400;500;600;700&family=Prata&display=swap">
 <link rel="stylesheet" href="style.css">
 <script>
+  document.documentElement.classList.add('js');
   (function () {
     try {
       var t = localStorage.getItem('eco-theme');
-      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      if (!t) t = 'dark';
       document.documentElement.setAttribute('data-theme', t);
     } catch (e) {}
   })();
@@ -62,9 +66,8 @@
 
 <main id="main" tabindex="-1">
   <section class="hero" id="top">
-    <div class="wrap hero__in" data-enter>
+    <div class="wrap hero__stack" data-enter>
       <div class="hero__text">
-        <p class="eyebrow">Leaf bioindication</p>
         <h1>Read environmental quality from a single leaf</h1>
         <p class="lead">Upload a photo of a tree leaf. EcoAnalysis measures two signs of plant stress right in your browser: how asymmetric the leaf is and how green it is.</p>
         <div class="row">
@@ -73,21 +76,30 @@
         </div>
         <p class="small muted">Photos never leave your device.</p>
       </div>
-      <div class="hero__art" aria-hidden="true">
-        <svg viewBox="0 0 400 460" id="heroLeaf" focusable="false">
-          <path class="hl-axis" d="M200 30 V440"/>
-          <path class="hl-body" d="M200 40 C 300 90, 345 210, 300 320 C 275 380, 235 420, 200 435 C 160 420, 120 380, 100 320 C 55 210, 100 90, 200 40 Z"/>
-          <g class="hl-veins"><path d="M200 420 V70"/><path d="M200 340 L285 275M200 340 L115 275M200 270 L290 200M200 270 L110 200M200 200 L270 140M200 200 L130 140"/></g>
-          <g class="hl-measure"><path d="M90 275 H200"/><path d="M200 275 H310"/><circle cx="90" cy="275" r="5"/><circle cx="310" cy="275" r="5"/></g>
-          <text x="145" y="262" text-anchor="middle" class="hl-t">L</text><text x="255" y="262" text-anchor="middle" class="hl-t">R</text>
-        </svg>
-      </div>
+      <figure class="scope">
+        <div class="scope__plate" aria-hidden="true">
+          <svg viewBox="0 0 640 260" focusable="false">
+            <path class="hl-axis" d="M30 130H620"/>
+            <path class="hl-body" d="M60 130C140 40 380 20 580 130C380 240 140 220 60 130Z"/>
+            <g class="hl-veins"><path d="M120 130L215 78M120 130L215 182M210 130L320 72M210 130L320 188M310 130L430 82M310 130L430 178M410 130L500 102M410 130L500 158"/></g>
+            <g class="hl-measure"><path d="M184 66V194M275 55V205M376 61V199"/><circle cx="184" cy="66" r="4"/><circle cx="184" cy="194" r="4"/><circle cx="275" cy="55" r="4"/><circle cx="275" cy="205" r="4"/><circle cx="376" cy="61" r="4"/><circle cx="376" cy="199" r="4"/></g>
+            <text x="275" y="38" text-anchor="middle" class="hl-t">L</text><text x="275" y="236" text-anchor="middle" class="hl-t">R</text>
+          </svg>
+          <span class="scope__scan"></span>
+        </div>
+        <dl class="scope__read">
+          <div><dt>Fluctuating asymmetry</dt><dd>0.031</dd></div>
+          <div><dt>Chlorophyll index</dt><dd>0.47</dd></div>
+          <div><dt>Stress class</dt><dd>II<small>Early deviation</small></dd></div>
+        </dl>
+        <figcaption class="scope__cap small muted">An example reading. Yours appears after you upload a photo.</figcaption>
+      </figure>
     </div>
   </section>
 
   <section class="section" id="about">
     <div class="wrap">
-      <header class="head"><p class="eyebrow">About</p><h2>Two signs, one picture</h2></header>
+      <header class="head"><h2>Two signs, one picture</h2></header>
       <div class="cols3">
         <article class="card"><svg class="i card__i" aria-hidden="true"><use href="#i-ruler"/></svg><h3>Fluctuating asymmetry</h3><p>Small random differences between the left and right halves of a leaf. They build up over a season, so a high value points to long-term stress.</p></article>
         <article class="card"><svg class="i card__i" aria-hidden="true"><use href="#i-sprout"/></svg><h3>Chlorophyll index</h3><p>Calculated from the green and red channels of the photo. Paler, yellower leaves score lower, which shows how the plant is doing right now.</p></article>
@@ -98,7 +110,7 @@
 
   <section class="section section--alt" id="how">
     <div class="wrap">
-      <header class="head"><p class="eyebrow">How it works</p><h2>Four steps from leaf to result</h2></header>
+      <header class="head"><h2>Four steps from leaf to result</h2></header>
       <ol class="steps">
         <li><span class="steps__n">1</span><h3>Pick a tree</h3><p>White willow, goat willow, balsam poplar, silver birch and 22 other species are in the list.</p></li>
         <li><span class="steps__n">2</span><h3>Photograph a leaf</h3><p>Lay it flat on white paper in good light. The white background calibrates the colours.</p></li>
@@ -110,7 +122,7 @@
 
   <section class="section" id="analysis">
     <div class="wrap">
-      <header class="head"><p class="eyebrow">Analysis</p><h2>Analyse a leaf</h2></header>
+      <header class="head"><h2>Analyse a leaf</h2></header>
       <div class="tool">
         <div class="tool__left">
           <div class="field">
@@ -146,14 +158,14 @@
             <p>Your photo and the measurements will appear here.</p>
           </div>
           <div class="stage stage--photo" id="stagePhoto" hidden>
-            <img id="preview" alt="Uploaded leaf photo" decoding="async">
+            <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Uploaded leaf photo" decoding="async">
             <div class="row row--center">
               <button class="btn btn--primary" type="button" id="analyzeBtn">Analyse leaf</button>
               <button class="btn btn--ghost" type="button" id="changeBtn">Change photo</button>
             </div>
           </div>
           <div class="progress" id="progress" hidden aria-live="polite">
-            <p class="progress__t" id="progressText">Analysing...</p>
+            <p class="progress__t" id="progressText">Analysing…</p>
             <ol class="progress__list" id="progressList">
               <li>Finding the leaf</li><li>Locating the symmetry axis</li><li>Measuring paired widths</li><li>Calibrating to the white background</li><li>Computing the chlorophyll index</li><li>Combining into a stress index</li>
             </ol>
@@ -163,7 +175,7 @@
 
       <div class="result" id="result" hidden>
         <div class="result__head">
-          <div><p class="eyebrow">Result</p><h3 id="resultTitle" tabindex="-1"></h3></div>
+          <div><h3 id="resultTitle" tabindex="-1"></h3></div>
           <span class="pill" id="resultClass"></span>
         </div>
         <div class="indices">
@@ -188,7 +200,7 @@
 
   <section class="section section--alt" id="map">
     <div class="wrap">
-      <header class="head"><p class="eyebrow">Map</p><h2>Demo map of an imaginary district</h2>
+      <header class="head"><h2>Demo map of an imaginary district</h2>
         <p class="lead">An illustration with sample data, not a real place. Drop your own result to see how a polluted, a clean and an in-between zone compare.</p></header>
 
       <div class="mapbar">
@@ -255,7 +267,7 @@
 
   <section class="section" id="comparison">
     <div class="wrap">
-      <header class="head"><p class="eyebrow">Comparison</p><h2>Which species cope best</h2>
+      <header class="head"><h2>Which species cope best</h2>
         <p class="lead">Average readings per species across the demo samples and yours. Lower stress is better.</p></header>
       <div class="table-wrap table-wrap--card"><div id="compare"></div></div>
     </div>
@@ -263,7 +275,7 @@
 
   <section class="section section--alt" id="planting">
     <div class="wrap">
-      <header class="head"><p class="eyebrow">Planting</p><h2>What to plant where</h2>
+      <header class="head"><h2>What to plant where</h2>
         <p class="lead">Species ranked by their reference tolerance to pollution.</p></header>
       <div class="cols3" id="recStatic"></div>
       <div class="dyn" id="recDyn" hidden><h3>What the samples on the map suggest</h3><ul id="recList"></ul></div>
@@ -272,7 +284,7 @@
 
   <section class="section" id="method">
     <div class="wrap">
-      <header class="head"><p class="eyebrow">Method</p><h2>How the numbers are made</h2></header>
+      <header class="head"><h2>How the numbers are made</h2></header>
       <div class="method">
         <div class="method__text">
           <p>Fluctuating asymmetry compares the left and right halves of a leaf. In the classic protocol you measure veins and angles by hand. This demo measures the leaf outline instead.</p>
@@ -313,7 +325,7 @@
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<canvas id="work" hidden></canvas>
+<canvas id="work" hidden aria-hidden="true"></canvas>
 <script src="script.js"></script>
 </body>
 </html>
