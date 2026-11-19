@@ -29,3 +29,7 @@ The classic method measures veins by hand, while this demo measures the outline,
 - `index.html` holds the page structure.
 - `style.css` holds the styles, including the dark theme.
 - `script.js` holds the analysis, the map and the charts.
+
+## Design
+
+The interface uses the Hedgerow look: deep leaf-green paper, cream ink, Prata headings over Manrope, one chartreuse accent, square flat surfaces with pill controls. A light theme is built in, and the Method section inverts colours on purpose. The hero leaf is measured by a slow scan line, which stops under reduced motion. Fonts load from Google Fonts and fall back to system serif and sans.
